@@ -1,45 +1,41 @@
 //William Gonzalez
-//9-12-2024
+//9-30-2024
 //CSC341
 //Lab 4
 
 
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 int x;
-int y = 100;
+int y = 15;
 
-int compare(const void *a, const void *b) {
-    return (*(uintptr_t *)b - *(uintptr_t *)a);
-}
+int main (int argc,char *argv[]){
+	int *value;
+	int z = 10;
 
-
-int main(int argc,char *argv[]){
-	int stack1 = 10;
-	int stack2 = 20;
-
-	int *heap_var = (int *)malloc(sizeof(int));
-	*heap_var = 30;
-
-  	uintptr_t addresses[6] = {
-        	(uintptr_t)&argc,  
-        	(uintptr_t)&stack1,        
-        	(uintptr_t)&stack2,         
-		(uintptr_t)heap_var,                  
-        	(uintptr_t)&y,        
-        	(uintptr_t)&x        
-    	};	
-	qsort(addresses, 6, sizeof(uintptr_t), compare);
-   	printf("Addresses from highest to lowest:\n");
-    	for (int i = 0; i < 6; i++) {
-        	printf("%p\n", (void *)addresses[i]);
-       	}
+	//pointer
+	
+	int *pointer1;
 
 
-	return 0;
+	//Printing address of argc
+	printf("Address of argc: %p\n", (void*)&argc);
+
+	//Printing address of Stack variable
+	printf("Address of Stack variable: %p\n", (void*)&z);
+	
+	//Printing address of Heap Variable
+	value = (int *)malloc(sizeof(int));
+	printf("Address of Heap: %p\n", (void*)&value);
+
+	//Printing uninitialized data
+	printf("Address of uninitialized data: %p\n", (void*)&x);
+
+	//Printing initialized data
+	printf("Address of initialized date: %p\n", (void*)&y);
+
+	return EXIT_SUCCESS;
 }
 
 
